@@ -1,0 +1,8 @@
+{
+    "editor.inlineSuggest.showToolbar": "always",
+    "files.associations": {
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "random": "cpp"
+    }
+}
