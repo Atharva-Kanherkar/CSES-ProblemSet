@@ -6,29 +6,32 @@ using namespace std;
 int main() {
     ll n, x;
     cin >> n >> x;
-    vector<int> a(n);
-    unordered_map<int, int> mp;
-    
+    vector<pair<int, int>> a(n);  
+
     for (int i = 0; i < n; i++) {
-           cin>>a[i];
+        cin >> a[i].first;
+        a[i].second = (i + 1);
     }
-    pair<int, int> ans = {-1, -1};
-    for(int i=0; i<n; i++){
-        int c = a[i];
-        int more = x - c;
-        if(mp.find(more)!=mp.end()){
-             ans.first = mp[more];
-             ans.second = i;
-             break;
+    int i = 0;
+    int j = n - 1;
+    sort(a.begin(), a.end());
+    pair<int, int> p;
+    while (i <= j) {
+        if (a[i].first + a[j].first > x) {
+            j--;
+        } else if (a[i].first + a[j].first < x) {
+            i++;
+        } else {
+            p.first = a[i].second;
+            p.second = a[j].second;
+            break;
         }
-        mp[c] = i;
     }
-    if(ans.first == -1){
-        cout<<"IMPOSSIBLE"<<endl;
+    if (p.first == p.second) {
+        cout << "IMPOSSIBLE" << endl;
+    } else {
+        cout << min(p.first, p.second) << " " << max(p.first, p.second) << endl;
     }
-    else
-    cout<<ans.first+1<<" "<<ans.second+1<<endl;
- 
 
     return 0;
 }
